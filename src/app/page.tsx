@@ -1,9 +1,39 @@
+"use client";
+
 import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import HeroSection from "@/components/HeroSection";
+import Agents from "@/components/Agents";
+import RegistrationForm from "@/components/RegistrationForm";
 
 function Home() {
+  let { scrollY } = useScroll();
+  let y = useTransform(scrollY, [0, 500], ["0%", "50%"]);
+
   return (
-    <div className="flex h-full items-center justify-center text-6xl md:text-9xl font-light">
-      VALORESI
+    <div>
+      <section className="relative flex flex-col">
+        <motion.div
+          style={{ y }}
+          className="absolute h-screen w-full top-0 -z-20"
+        >
+          <video
+            muted
+            playsInline
+            autoPlay
+            loop
+            className="h-full w-full object-cover object-center blur-md brightness-[30%]"
+          >
+            <source src="/videos/bg_vid.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
+
+        <div className="mx-2">
+          <HeroSection />
+          <Agents />
+          <RegistrationForm />
+        </div>
+      </section>
     </div>
   );
 }
