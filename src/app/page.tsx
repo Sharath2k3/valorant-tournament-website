@@ -8,13 +8,14 @@ import RegistrationForm from "@/components/RegistrationForm";
 
 function Home() {
   let { scrollY } = useScroll();
-  let y = useTransform(scrollY, [0, 500], ["0%", "50%"]);
+  let y = useTransform(scrollY, [0, 500], ["0%", "60%"]);
+  let opacity = useTransform(scrollY, [0, 1000], [1, 0]);
 
   return (
     <div>
       <section className="relative flex flex-col">
         <motion.div
-          style={{ y }}
+          style={{ y, opacity }}
           className="absolute h-screen w-full top-0 -z-20"
         >
           <video
