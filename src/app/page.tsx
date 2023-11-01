@@ -23,7 +23,7 @@ function Home() {
             playsInline
             autoPlay
             loop
-            className="h-full w-full object-cover object-center blur-md brightness-[30%]"
+            className="h-full w-full object-cover object-center blur-[8px] brightness-[25%]"
           >
             <source src="/videos/bg_vid.mp4" type="video/mp4" />
           </video>
