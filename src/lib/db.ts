@@ -16,7 +16,11 @@ export async function connectDB(): Promise<void> {
   }
 
   try {
-    await mongoose.connect(process.env.DATABASE_URL);
+    await mongoose.connect(process.env.DATABASE_URL, {
+      appName: "valoresi",
+      dbName: "valoresi-db",
+    });
+
     isConnected = true;
     console.log("Connected to database");
   } catch (e: any) {
