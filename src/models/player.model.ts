@@ -20,7 +20,7 @@ export interface IPlayer {
     | "Ascendant"
     | "Immortal"
     | "Radiant";
-  teamCode: string | null;
+  teamCode: string;
   note: string | null;
 }
 
@@ -41,11 +41,27 @@ const PlayerSchema = new mongoose.Schema<IPlayer>(
     },
     phoneNumber: {
       type: String,
-      unique: true,
+      index: {
+        unique: true,
+        partialFilterExpression: {
+          phoneNumber: {
+            $type: "string",
+          },
+        },
+      },
+      default: null,
     },
     discordId: {
       type: String,
-      unique: true,
+      index: {
+        unique: true,
+        partialFilterExpression: {
+          discordId: {
+            $type: "string",
+          },
+        },
+      },
+      default: null,
     },
     riotId: {
       type: String,
@@ -73,9 +89,12 @@ const PlayerSchema = new mongoose.Schema<IPlayer>(
     },
     teamCode: {
       type: String,
+      required: [true, "Team Code is required"],
     },
     note: {
       type: String,
+      trim: true,
+      default: null,
     },
   },
   { timestamps: true }
