@@ -30,6 +30,10 @@ module.exports = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        successful: {
+          DEFAULT: "hsl(var(--successful))",
+          foreground: "hsl(var(--successful-foreground))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
