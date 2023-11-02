@@ -1,17 +1,11 @@
 "use client";
 
-/*
-  todo:
-    - loading indicator
-    - success popup
-    - error popup?
-*/
-
 import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useToast } from "@/components/ui/use-toast";
 
 import {
   Form,
@@ -41,6 +35,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CopyIcon } from "@radix-ui/react-icons";
+import Spinner from "@/components/Spinner";
 
 import { createPlayer } from "@/actions/player.actions";
 import { playerSchema } from "@/validators/player.validator";
@@ -64,6 +59,8 @@ function RegistrationForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [teamCodeDisabled, setTeamCodeDisabled] = useState<boolean>(false);
+
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof playerSchema>>({
     resolver: zodResolver(playerSchema),
@@ -113,6 +110,12 @@ function RegistrationForm() {
 
       if (errorMessage) {
         setError(errorMessage);
+      } else {
+        toast({
+          title: "Your registration is saved successfully",
+          description: "Welcome to VALORESI",
+          variant: "successful",
+        });
       }
     } catch (e: any) {
       if (process.env.NODE_ENV === "production") {
@@ -308,6 +311,11 @@ function RegistrationForm() {
                               onClick={(event) => {
                                 event.preventDefault();
                                 copyToClipboard(field.value);
+
+                                toast({
+                                  title: "Team Code copied to clipboard",
+                                  variant: "successful",
+                                });
                               }}
                             >
                               <CopyIcon />
@@ -340,7 +348,7 @@ function RegistrationForm() {
                   </FormItem>
                 )}
               />
-              <div className="flex w-full pt-4 justify-around items-center">
+              <div className="flex w-full pt-4 justify-between items-center">
                 <Button
                   disabled={loading}
                   type="reset"
@@ -353,6 +361,7 @@ function RegistrationForm() {
                   Submit
                 </Button>
               </div>
+              {loading && <Spinner />}
               {error && (
                 <Label className="text-primary font-bold text-center">
                   {error}
