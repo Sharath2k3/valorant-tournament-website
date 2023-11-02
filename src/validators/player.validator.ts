@@ -36,7 +36,7 @@ export const playerSchema = z.object({
   riotId: z
     .string()
     .includes("#", {
-      message: "Invalid Riot ID",
+      message: "Invalid Riot ID (name#tag)",
     })
     .min(5),
   rank: z.enum([

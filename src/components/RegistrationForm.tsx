@@ -80,22 +80,36 @@ function RegistrationForm() {
     },
   });
 
+  function onReset(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void {
+    event.preventDefault();
+    form.reset();
+    setTeamCodeDisabled(false);
+    setError("");
+  }
+
   async function onSubmit(data: z.infer<typeof playerSchema>): Promise<void> {
     setLoading(true);
     setError("");
 
     try {
-      const errorMessage: string = await createPlayer({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phoneNumber: data.phoneNumber ? data.phoneNumber : null,
-        discordId: data.discordId ? data.discordId : null,
-        riotId: data.riotId,
-        rank: data.rank,
-        teamCode: data.teamCode,
-        note: data.note ? data.note : null,
-      });
+      const errorMessage: string = await createPlayer(
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phoneNumber: data.phoneNumber ? data.phoneNumber : null,
+          discordId: data.discordId ? data.discordId : null,
+          riotId: data.riotId,
+          rank: data.rank,
+          teamCode: data.teamCode,
+          note: data.note ? data.note : null,
+        },
+        {
+          isNewTeam: teamCodeDisabled,
+        }
+      );
 
       if (errorMessage) {
         setError(errorMessage);
@@ -331,12 +345,7 @@ function RegistrationForm() {
                   disabled={loading}
                   type="reset"
                   variant="outline"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    form.reset();
-                    setTeamCodeDisabled(false);
-                    setError("");
-                  }}
+                  onClick={onReset}
                 >
                   Clear
                 </Button>

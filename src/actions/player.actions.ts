@@ -3,7 +3,16 @@
 import { connectDB } from "@/lib/db";
 import Player, { IPlayer } from "@/models/player.model";
 
-export async function createPlayer(player: IPlayer): Promise<string> {
+export interface CreatePlayerParams {
+  isNewTeam: boolean;
+}
+
+export async function createPlayer(
+  player: IPlayer,
+  params: CreatePlayerParams
+): Promise<string> {
+  const { isNewTeam } = params;
+
   try {
     await connectDB();
 
@@ -11,12 +20,16 @@ export async function createPlayer(player: IPlayer): Promise<string> {
       teamCode: player.teamCode,
     });
 
-    if (teamPlayers.length < 5) {
-      await Player.create(player);
-      return "";
-    } else {
-      return "This team already contains 5 players";
+    if (!isNewTeam && teamPlayers.length == 0) {
+      return "This team doesn't exist. Generate a code to create a new team";
     }
+
+    if (teamPlayers.length > 4) {
+      return "This team already contains 5 players (full)";
+    }
+
+    await Player.create(player);
+    return "";
   } catch (e: any) {
     if (e.code == 11000) {
       const fieldValue = e.keyValue[Object.keys(e.keyValue)[0]];
