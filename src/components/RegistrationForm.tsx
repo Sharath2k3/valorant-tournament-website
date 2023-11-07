@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -272,7 +273,20 @@ function RegistrationForm() {
                           <SelectContent>
                             {VALORANT_RANKS.map((rank) => (
                               <SelectItem key={rank} value={rank}>
-                                {rank}
+                                <div className="flex justify-center items-center gap-2">
+                                  {rank === "Unranked" ? (
+                                    <div className="w-5 h-5" />
+                                  ) : (
+                                    <Image
+                                      src={`/images/ranks/${rank}.png`}
+                                      alt={rank}
+                                      width={256}
+                                      height={256}
+                                      className="w-5 h-5"
+                                    />
+                                  )}
+                                  <p>{rank}</p>
+                                </div>
                               </SelectItem>
                             ))}
                           </SelectContent>
