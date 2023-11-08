@@ -10,7 +10,7 @@ function RegisterPopup() {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-center flex-col md:flex-row rounded-xl">
+    <div className="flex items-center justify-center gap-12 flex-col md:flex-row rounded-xl">
       <motion.div
         whileHover={{
           scale: 1.03,
@@ -38,6 +38,8 @@ function RegisterPopup() {
           width={400}
           height={400}
           className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[35%] blur-[3px] rounded-xl"
+          placeholder="blur"
+          blurDataURL="/images/popup/create.jpg"
         />
         <p>CREATE NEW TEAM</p>
       </motion.div>
@@ -68,6 +70,8 @@ function RegisterPopup() {
           width={400}
           height={400}
           className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[35%] blur-[3px] rounded-xl"
+          placeholder="blur"
+          blurDataURL="/images/popup/join.jpg"
         />
         <p>JOIN A TEAM</p>
       </motion.div>
