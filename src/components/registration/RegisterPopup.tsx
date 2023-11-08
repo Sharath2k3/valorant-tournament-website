@@ -39,7 +39,7 @@ function RegisterPopup() {
           height={400}
           className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[35%] blur-[3px] rounded-xl"
           placeholder="blur"
-          blurDataURL="/images/popup/create.jpg"
+          blurDataURL="/images/popup/create_blur.jpg"
         />
         <p>CREATE NEW TEAM</p>
       </motion.div>
@@ -71,7 +71,7 @@ function RegisterPopup() {
           height={400}
           className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[35%] blur-[3px] rounded-xl"
           placeholder="blur"
-          blurDataURL="/images/popup/join.jpg"
+          blurDataURL="/images/popup/join_blur.jpg"
         />
         <p>JOIN A TEAM</p>
       </motion.div>
