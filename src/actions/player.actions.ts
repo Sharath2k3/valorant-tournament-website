@@ -21,7 +21,11 @@ export async function createPlayer(
     });
 
     if (!isNewTeam && teamPlayers.length == 0) {
-      return "This team doesn't exist. Generate a code to create a new team";
+      return "This team doesn't exist. Try to create a new team or join an existing one";
+    }
+
+    if (isNewTeam && teamPlayers.length > 0) {
+      return "This team already exists. Try to generate a unique code";
     }
 
     if (teamPlayers.length > 4) {

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,32 +32,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CopyIcon } from "@radix-ui/react-icons";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/registration/Spinner";
 
 import { createPlayer } from "@/actions/player.actions";
 import { playerSchema } from "@/validators/player.validator";
 import shortUUID from "short-uuid";
 import { copyToClipboard } from "@/lib/clipboard";
 
-const VALORANT_RANKS = [
-  "Unranked",
-  "Iron",
-  "Bronze",
-  "Silver",
-  "Gold",
-  "Platinum",
-  "Diamond",
-  "Ascendant",
-  "Immortal",
-  "Radiant",
-];
+import { VALORANT_RANKS } from "@/lib/const";
 
-function RegistrationForm() {
+function CreateForm() {
+  const router = useRouter();
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [teamCodeDisabled, setTeamCodeDisabled] = useState<boolean>(false);
@@ -104,13 +97,15 @@ function RegistrationForm() {
           note: data.note ? data.note : null,
         },
         {
-          isNewTeam: teamCodeDisabled,
+          isNewTeam: true,
         }
       );
 
       if (errorMessage) {
         setError(errorMessage);
       } else {
+        router.replace("/");
+
         toast({
           title: "Your registration is saved successfully",
           description: "Welcome to VALORESI",
@@ -130,7 +125,7 @@ function RegistrationForm() {
   }
 
   return (
-    <section className="min-h-screen mb-4 flex flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center">
       <Card>
         <CardHeader className="text-center">
           <CardTitle>Register</CardTitle>
@@ -272,7 +267,20 @@ function RegistrationForm() {
                           <SelectContent>
                             {VALORANT_RANKS.map((rank) => (
                               <SelectItem key={rank} value={rank}>
-                                {rank}
+                                <div className="flex justify-center items-center gap-2">
+                                  {rank === "Unranked" ? (
+                                    <div className="w-5 h-5" />
+                                  ) : (
+                                    <Image
+                                      src={`/images/ranks/${rank}.png`}
+                                      alt={rank}
+                                      width={256}
+                                      height={256}
+                                      className="w-5 h-5"
+                                    />
+                                  )}
+                                  <p>{rank}</p>
+                                </div>
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -324,9 +332,9 @@ function RegistrationForm() {
                         </div>
                         <FormControl>
                           <Input
-                            placeholder="Enter your team code"
+                            placeholder="Generate your team code"
                             {...field}
-                            disabled={teamCodeDisabled}
+                            disabled={true}
                           />
                         </FormControl>
                         <FormMessage />
@@ -375,4 +383,4 @@ function RegistrationForm() {
   );
 }
 
-export default RegistrationForm;
+export default CreateForm;
