@@ -16,6 +16,12 @@ body,
   height: 100%;
 }
 
+@font-face {
+  font-family: "Valorant";
+  font-display: swap;
+  src: url(/fonts/Valorant-Font.ttf);
+}
+
 @layer base {
   :root {
     --background: 20 14.3% 4.1%;
