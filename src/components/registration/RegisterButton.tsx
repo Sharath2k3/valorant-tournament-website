@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { buttonVariants } from "@/components/ui/button";
-import RegisterModal from "@/components/RegisterModal";
+import RegisterModal from "@/components/registration/RegisterModal";
 
 function RegisterButton() {
   const [modalOpen, setModalOpen] = useState(false);

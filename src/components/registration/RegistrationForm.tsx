@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useSearchParams, notFound } from "next/navigation";
+import { useRouter, useSearchParams, notFound } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,12 +32,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CopyIcon } from "@radix-ui/react-icons";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/registration/Spinner";
 
 import { createPlayer } from "@/actions/player.actions";
 import { playerSchema } from "@/validators/player.validator";
@@ -58,6 +58,7 @@ const VALORANT_RANKS = [
 ];
 
 function RegistrationForm() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   if (
@@ -122,6 +123,8 @@ function RegistrationForm() {
       if (errorMessage) {
         setError(errorMessage);
       } else {
+        router.replace("/");
+
         toast({
           title: "Your registration is saved successfully",
           description: "Welcome to VALORESI",

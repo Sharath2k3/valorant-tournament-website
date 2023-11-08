@@ -2,8 +2,8 @@ import React from "react";
 
 import { motion } from "framer-motion";
 
-import Backdrop from "@/components/Backdrop";
-import RegisterPopup from "@/components/RegisterPopup";
+import Backdrop from "@/components/registration/Backdrop";
+import RegisterPopup from "@/components/registration/RegisterPopup";
 
 const dropIn = {
   hidden: {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import RegisterButton from "./RegisterButton";
+import RegisterButton from "@/components/registration/RegisterButton";
 
 function HeroSection() {
   return (

@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import RegistrationForm from "@/components/RegistrationForm";
+import RegistrationForm from "@/components/registration/RegistrationForm";
 
 function Register() {
   return (
