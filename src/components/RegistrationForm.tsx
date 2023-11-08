@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useSearchParams, notFound } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -57,6 +58,15 @@ const VALORANT_RANKS = [
 ];
 
 function RegistrationForm() {
+  const searchParams = useSearchParams();
+
+  if (
+    searchParams.get("create") !== "true" &&
+    searchParams.get("create") !== "false"
+  ) {
+    notFound();
+  }
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [teamCodeDisabled, setTeamCodeDisabled] = useState<boolean>(false);
@@ -131,7 +141,7 @@ function RegistrationForm() {
   }
 
   return (
-    <section className="min-h-screen mb-4 flex flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center">
       <Card>
         <CardHeader className="text-center">
           <CardTitle>Register</CardTitle>

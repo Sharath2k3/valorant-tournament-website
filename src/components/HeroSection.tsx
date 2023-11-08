@@ -1,8 +1,14 @@
 import React from "react";
 
+import RegisterButton from "./RegisterButton";
+
 function HeroSection() {
   return (
-    <div className="h-screen flex items-center justify-center">HeroSection</div>
+    <div className="h-screen flex flex-col gap-8 items-center justify-center">
+      <p>HeroSection</p>
+
+      <RegisterButton />
+    </div>
   );
 }
 

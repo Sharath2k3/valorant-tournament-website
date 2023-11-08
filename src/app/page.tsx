@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+
 import { motion, useScroll, useTransform } from "framer-motion";
+
 import HeroSection from "@/components/HeroSection";
 import Agents from "@/components/Agents";
-import RegistrationForm from "@/components/RegistrationForm";
 
 function Home() {
   let { scrollY } = useScroll();
@@ -32,7 +33,6 @@ function Home() {
         <div className="mx-2">
           <HeroSection />
           <Agents />
-          <RegistrationForm />
         </div>
       </section>
     </div>
