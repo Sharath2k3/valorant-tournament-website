@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 import HeroSection from "@/components/HeroSection";
 import Agents from "@/components/Agents";
+import TeamInfo from "@/components/TeamInfo";
 
 function Home() {
   let { scrollY } = useScroll();
@@ -33,6 +34,7 @@ function Home() {
         <div className="mx-2">
           <HeroSection />
           <Agents />
+          <TeamInfo />
         </div>
       </section>
     </div>

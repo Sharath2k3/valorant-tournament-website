@@ -40,21 +40,21 @@ export async function createPlayer(
       return `This field already exists '${fieldValue}'`;
     } else {
       console.log(e);
-      throw e;
+      return "Something went wrong";
     }
   }
 }
 
-export async function getTeam(riotId: string): Promise<IPlayer[]> {
+export async function getTeam(riotId: string): Promise<IPlayer[] | string> {
   try {
     await connectDB();
 
     const players = await Player.find({ riotId });
 
     if (players.length == 0) {
-      throw Error("No player found with this riot id");
+      return "No player found with this riot id";
     } else if (players.length > 1) {
-      throw Error("Something went wrong");
+      return "Something went wrong";
     }
 
     const teamPlayers = await Player.find({
@@ -76,11 +76,11 @@ export async function getTeam(riotId: string): Promise<IPlayer[]> {
     });
   } catch (e: any) {
     console.log(e);
-    throw e;
+    return "Something went wrong";
   }
 }
 
-export async function getAllPlayers(): Promise<IPlayer[]> {
+export async function getAllPlayers(): Promise<IPlayer[] | string> {
   try {
     await connectDB();
     return (await Player.find()).map((player) => {
@@ -98,6 +98,6 @@ export async function getAllPlayers(): Promise<IPlayer[]> {
     });
   } catch (e: any) {
     console.log(e.message);
-    return [];
+    return "Something went wrong";
   }
 }
