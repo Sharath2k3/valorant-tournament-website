@@ -4,11 +4,19 @@ import RegisterButton from "@/components/registration/RegisterButton";
 
 function HeroSection() {
   return (
-    <div className="h-screen flex flex-col gap-8 items-center justify-center">
-      <p>HeroSection</p>
+    <section className="h-screen overflow-hidden flex flex-col gap-12 items-center justify-center">
+      <ValoresiText />
 
       <RegisterButton />
-    </div>
+    </section>
+  );
+}
+
+function ValoresiText() {
+  return (
+    <h1 className="inline text-primary text-center font-light font-valorant opacity-50 text-6xl md:text-8xl">
+      VALORESI
+    </h1>
   );
 }
 

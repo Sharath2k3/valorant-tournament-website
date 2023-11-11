@@ -18,11 +18,11 @@ function RegisterButton() {
         whileTap={{ scale: 0.9 }}
         className={buttonVariants({
           variant: "default",
-          size: "default",
-          className: "",
+          size: "lg",
+          className: "text-lg font-valorant font-bold tracking-widest",
         })}
       >
-        Register
+        REGISTER
       </motion.button>
 
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => {}}>
