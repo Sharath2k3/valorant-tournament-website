@@ -45,10 +45,57 @@ export async function createPlayer(
   }
 }
 
+export async function getTeam(riotId: string): Promise<IPlayer[]> {
+  try {
+    await connectDB();
+
+    const players = await Player.find({ riotId });
+
+    if (players.length == 0) {
+      throw Error("No player found with this riot id");
+    } else if (players.length > 1) {
+      throw Error("Something went wrong");
+    }
+
+    const teamPlayers = await Player.find({
+      teamCode: players[0].teamCode,
+    });
+
+    return teamPlayers.map((player) => {
+      return {
+        firstName: player.firstName,
+        lastName: player.lastName,
+        email: player.email,
+        riotId: player.riotId,
+        rank: player.rank,
+        teamCode: player.teamCode,
+        discordId: player.discordId,
+        phoneNumber: player.phoneNumber,
+        note: player.note,
+      };
+    });
+  } catch (e: any) {
+    console.log(e);
+    throw e;
+  }
+}
+
 export async function getAllPlayers(): Promise<IPlayer[]> {
   try {
     await connectDB();
-    return await Player.find();
+    return (await Player.find()).map((player) => {
+      return {
+        firstName: player.firstName,
+        lastName: player.lastName,
+        email: player.email,
+        riotId: player.riotId,
+        rank: player.rank,
+        teamCode: player.teamCode,
+        discordId: player.discordId,
+        phoneNumber: player.phoneNumber,
+        note: player.note,
+      };
+    });
   } catch (e: any) {
     console.log(e.message);
     return [];
