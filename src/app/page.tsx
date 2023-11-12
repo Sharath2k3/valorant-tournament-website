@@ -5,7 +5,6 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import HeroSection from "@/components/HeroSection";
-import Agents from "@/components/Agents";
 import RegisterHelp from "@/components/RegisterHelp";
 import TeamInfo from "@/components/TeamInfo";
 
@@ -34,7 +33,6 @@ function Home() {
 
         <div className="mx-2">
           <HeroSection />
-          <Agents />
           <section className="min-h-screen flex flex-col md:flex-row gap-6 md:gap-0 items-center justify-around p-12">
             <RegisterHelp />
             <TeamInfo />
