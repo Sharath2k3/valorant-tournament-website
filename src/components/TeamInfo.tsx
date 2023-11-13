@@ -58,9 +58,7 @@ function TeamInfo() {
     setLoading(false);
   }
 
-  async function clear(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): Promise<void> {
+  function clear(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.preventDefault();
     setError("");
     setTeam([]);
@@ -68,7 +66,7 @@ function TeamInfo() {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center max-w-1/2">
       <Card>
         <CardHeader className="text-center">
           <CardTitle>Find your team</CardTitle>

@@ -10,3 +10,8 @@ export const VALORANT_RANKS = [
   "Immortal",
   "Radiant",
 ];
+
+export const LINKS = {
+  mail: "valoresi@esi.dz",
+  instagram: "https://www.instagram.com/valor.esi/",
+};
