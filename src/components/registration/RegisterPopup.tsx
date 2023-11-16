@@ -37,7 +37,7 @@ function RegisterPopup() {
           alt="create team"
           width={400}
           height={400}
-          className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[35%] blur-[3px] rounded-xl"
+          className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[50%] blur-[2px] rounded-xl"
           placeholder="blur"
           blurDataURL="/images/popup/create_blur.jpg"
         />
@@ -69,7 +69,7 @@ function RegisterPopup() {
           alt="join team"
           width={400}
           height={400}
-          className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[35%] blur-[3px] rounded-xl"
+          className="absolute object-cover object-center top-0 left-0 -z-40 w-full h-full brightness-[50%] blur-[2px] rounded-xl"
           placeholder="blur"
           blurDataURL="/images/popup/join_blur.jpg"
         />
