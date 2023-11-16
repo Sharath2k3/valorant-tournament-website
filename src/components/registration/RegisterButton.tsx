@@ -19,10 +19,10 @@ function RegisterButton() {
         className={buttonVariants({
           variant: "default",
           size: "lg",
-          className: "text-lg font-valorant font-bold tracking-widest",
+          className: "text-xl pt-7 pb-6 font-valorant font-bold tracking-wider",
         })}
       >
-        REGISTER
+        REGISTER NOW
       </motion.button>
 
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => {}}>
