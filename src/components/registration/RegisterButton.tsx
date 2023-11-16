@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -25,13 +24,6 @@ function RegisterButton() {
       >
         REGISTER
       </motion.button>
-      <span className="block text-center">
-        <Link href="#help" title="help">
-          <span className="text-muted-foreground hover:underline">
-            how to register
-          </span>
-        </Link>
-      </span>
 
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => {}}>
         {modalOpen && <RegisterModal handleClode={() => setModalOpen(false)} />}
