@@ -13,16 +13,18 @@ function RegisterButton() {
   return (
     <div className="relative">
       <motion.button
-        onClick={() => setModalOpen(true)}
+        onClick={() => {}}
+        disabled={true}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className={buttonVariants({
           variant: "default",
           size: "lg",
-          className: "text-xl pt-7 pb-6 font-valorant font-bold tracking-wider",
+          className:
+            "text-xl pt-7 pb-6 font-valorant font-bold tracking-wider disabled:bg-muted",
         })}
       >
-        REGISTER NOW
+        registration closed
       </motion.button>
 
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => {}}>
